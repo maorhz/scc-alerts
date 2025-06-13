@@ -1,6 +1,6 @@
 # Two functions (deploy on cloud run) for processing scc notifications sent to a specific pub/sub topic,
-# Log the notifications as json documents on Firestore and second function pick up the documents, process
-# and send them as consolidated alerts to another pub/sub topic where integration task will follow to send emails from the alerts.
+# log the notifications as json documents on Firestore, then a second function pick up the documents, process
+# and publish them as consolidated alerts to another pub/sub topic where integration task will follow to send emails from the alerts.
 
 import json
 import base64

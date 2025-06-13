@@ -1,0 +1,23 @@
+## Email Subject (copy/pasted)) ##
+** SCC ALERT ** [$findings_msg.count$ occurrences] $findings_msg.aggregation_key.title$
+
+
+## Email Body (copy/pasted)##
+<html>
+<body>
+  <h2>SCC Alert: $findings_msg.aggregation_key.title$</h2>
+  <hr>
+  <p><b>Project:</b> $findings_msg.project_name$</p>
+  <p><b>Resource:</b> $findings_msg.aggregation_key.resource$</p>
+  <p><b>Severity:</b> $findings_msg.severity$</p>
+  <p><b>Occurrences:</b> $findings_msg.count$</p>
+  
+  <p>$findings_msg.occurrence_datetimes$</p>
+
+  <hr>
+  <h3>Details</h3>
+  <p>$findings_msg.description$</p>
+  <h3>Remediation steps</h3>
+  <p>$findings_msg.formatted_next_steps$</p>
+</body>
+</html>

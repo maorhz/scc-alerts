@@ -1,4 +1,4 @@
-#  Copyright 2025 Google LLC
+#   Copyright 2025 Google LLC
 
 #   Two functions (deploy on cloud run) for processing scc notifications sent to a specific pub/sub topic,
 #   log the notifications as json documents on Firestore, then a second function pick up the documents, process

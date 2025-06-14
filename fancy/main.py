@@ -58,7 +58,7 @@ def process_and_store_finding(event, context):
         'next_steps': finding.get('nextSteps', 'N/A'),
         'event_time': finding.get('eventTime', 'N/A'),
         'finding_id': finding_id,
-        # These keys are not in this specific JSON, but the safe .get() method handles them.
+        # These keys are not always in the JSON payload, but the safe .get() method handles them.
         'explanation': finding.get('sourceProperties', {}).get('Explanation', 'N/A'),
         'external_uri': finding.get('externalUri', 'N/A')
     }

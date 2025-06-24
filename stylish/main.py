@@ -76,7 +76,7 @@ def process_and_store_finding(event, context):
 
 
 # --- FUNCTION 2: AGGREGATE AND PUBLISH DIGEST ALERT ---
-# cloud run deploy: gcloud functions deploy scc-digest-publisher --gen2 --runtime=python311 --region=us-central1 --source=. --entry-point=digest_publisher --trigger-topic=scc-findings-parsed --set-env-vars GCP_PROJECT=$(gcloud config get-value project) --allow-unauthenticated
+# cloud run deploy: gcloud functions deploy scc-digest-publisher --gen2 --runtime=python311 --region=us-central1 --source=. --entry-point=digest_publisher --trigger-topic=scc-alerts-2send --set-env-vars GCP_PROJECT=$(gcloud config get-value project) --allow-unauthenticated
 def digest_publisher(event, context):
     """
     Triggered by Cloud Scheduler. Aggregates findings from Firestore, formats

@@ -91,11 +91,15 @@ def digest_publisher(event, context):
         print("No pending findings to process. Exiting.")
         return 'OK', 204
 
-    # Group findings by (resource, title)
+    # Group findings by (resource, title, AND description)
     grouped_findings = defaultdict(list)
     for doc in all_findings_docs:
         finding = doc.to_dict()
-        key = (finding.get('resource'), finding.get('title'))
+        key = (
+            finding.get('resource'), 
+            finding.get('title'), 
+            finding.get('description')
+        )
         grouped_findings[key].append(finding)
     
     print(f"Found {len(all_findings_docs)} findings, aggregated into {len(grouped_findings)} groups.")
@@ -104,7 +108,7 @@ def digest_publisher(event, context):
     topic_path = publisher.topic_path(PROJECT_ID, DESTINATION_TOPIC)
     publish_futures = []
 
-    for (resource_name, title), findings_list in grouped_findings.items():
+    for (resource_name, title, description), findings_list in grouped_findings.items():
         # --- Logic to format dates and times ---
         datetimes = []
         for finding in findings_list:
@@ -130,7 +134,7 @@ def digest_publisher(event, context):
             "count": len(findings_list),
             "severity": findings_list[0].get('severity'),
             "project_name": findings_list[0].get('project_name'),
-            "description": findings_list[0].get('description', 'No description available.'),
+            "description": description,
             "next_steps": next_steps_raw,
             "formatted_next_steps": next_steps_raw.replace('\n', '<br>'),
             "occurrences": findings_list,
